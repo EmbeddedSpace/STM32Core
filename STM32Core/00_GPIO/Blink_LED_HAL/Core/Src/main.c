@@ -65,6 +65,8 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
+    extern int g_pfnVectors[];
+    SCB->VTOR = (uint32_t)(void*)g_pfnVectors;
 
   /* USER CODE END 1 */
 
