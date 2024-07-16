@@ -214,4 +214,11 @@ void TIM6_IRQHandler(void)
 
 /* USER CODE BEGIN 1 */
 
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+    if(htim == &htim6)
+    {
+        HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);
+    }
+}
 /* USER CODE END 1 */
