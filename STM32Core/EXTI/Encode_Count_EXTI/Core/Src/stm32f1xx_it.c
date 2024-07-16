@@ -233,14 +233,14 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
     if(GPIO_Pin == GPIO_PIN_0)
     {
-        if((HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == 0) &&(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1) == 0))
+        if((HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == GPIO_PIN_RESET) &&(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1) == GPIO_PIN_RESET))
         {
             printf("Count: %ld\n", ++EncodeCount);
         }
     }
     else if(GPIO_Pin == GPIO_PIN_1)
     {
-        if((HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1) == 0)&&(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == 0))
+        if((HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1) == GPIO_PIN_RESET)&&(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == GPIO_PIN_RESET))
         {
             printf("Count: %ld\n", --EncodeCount);
         }
