@@ -57,24 +57,6 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-uint32_t  N=0;
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-    if(htim == &htim4)
-    {
-        printf("Freq: %lu\n", N);
-        N = 0;
-    }
-
-}
-
-void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef  *htim)
-{
-    if(htim == &htim4)
-    {
-        N++;
-    }
-}
 /* USER CODE END 0 */
 
 /**
@@ -83,6 +65,7 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef  *htim)
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
     RetargetInit(&huart1);
   /* USER CODE END 1 */
