@@ -22,7 +22,7 @@
 #include "stm32f1xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "retarget.h"
+#include <stdio.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -215,5 +215,23 @@ void TIM4_IRQHandler(void)
 
 /* USER CODE BEGIN 1 */
 
+uint32_t  N=0;
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+    if(htim == &htim4)
+    {
+        printf("Freq: %lu\n", N);
+        N = 0;
+    }
+
+}
+
+void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef  *htim)
+{
+    if(htim == &htim4)
+    {
+        N++;
+    }
+}
 
 /* USER CODE END 1 */
