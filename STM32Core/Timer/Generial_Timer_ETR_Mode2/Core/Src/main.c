@@ -58,14 +58,6 @@ static void MX_USART1_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-    if(htim == &htim2)
-    {
-        HAL_GPIO_TogglePin(LED0_GPIO_Port,LED0_Pin);
-        printf("Count: %lu\n", __HAL_TIM_GET_COUNTER(&htim2));
-    }
-}
 /* USER CODE END 0 */
 
 /**
@@ -74,6 +66,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
     RetargetInit(&huart1);
   /* USER CODE END 1 */
@@ -99,7 +92,6 @@ int main(void)
   MX_TIM2_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-  __HAL_TIM_CLEAR_IT(&htim2,TIM_IT_UPDATE);
   HAL_TIM_Base_Start_IT(&htim2);
   /* USER CODE END 2 */
 
@@ -174,7 +166,7 @@ static void MX_TIM2_Init(void)
   htim2.Instance = TIM2;
   htim2.Init.Prescaler = 0;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 10-1;
+  htim2.Init.Period = 5-1;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)

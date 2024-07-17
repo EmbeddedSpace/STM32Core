@@ -22,6 +22,7 @@
 #include "stm32f1xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdio.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -214,4 +215,12 @@ void TIM2_IRQHandler(void)
 
 /* USER CODE BEGIN 1 */
 
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+    if(htim == &htim2)
+    {
+        HAL_GPIO_TogglePin(LED0_GPIO_Port,LED0_Pin);
+        printf("Count: %lu\n", __HAL_TIM_GET_COUNTER(&htim2));
+    }
+}
 /* USER CODE END 1 */
