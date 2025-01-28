@@ -41,7 +41,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
-
+int Count = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -204,7 +204,13 @@ void SysTick_Handler(void)
 void EXTI0_IRQHandler(void)
 {
   /* USER CODE BEGIN EXTI0_IRQn 0 */
-
+  HAL_Delay(20);
+  if (HAL_GPIO_ReadPin(EXTI0_GPIO_Port, EXTI0_Pin) == GPIO_PIN_RESET)
+  {
+    HAL_GPIO_TogglePin(LED0_GPIO_Port,LED0_Pin);
+    Count++;
+    printf("Count:%d\n",Count);
+  }
   /* USER CODE END EXTI0_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(EXTI0_Pin);
   /* USER CODE BEGIN EXTI0_IRQn 1 */
@@ -213,12 +219,5 @@ void EXTI0_IRQHandler(void)
 }
 
 /* USER CODE BEGIN 1 */
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-{
-    if(GPIO_Pin == GPIO_PIN_0)
-    {
-        HAL_GPIO_TogglePin(LED0_GPIO_Port,LED0_Pin);
-    }
-}
 
 /* USER CODE END 1 */
